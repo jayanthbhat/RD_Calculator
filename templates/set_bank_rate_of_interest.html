@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<body>
+
+    <div class="text-center">
+        <!-- Card -->
+        <div class="card" style="padding:40px">
+        
+        <!-- Card image -->
+        
+
+        <!-- Card content -->
+        <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title"><a>Set Rate of interest</a></h4>
+            <!-- Text -->
+            
+            <form method="post" action="">
+                {% csrf_token %}
+
+                <p>Select rate of interest 0-12 Months</p>
+                {{form.rate_of_interest_1}}
+                <p>Select rate of interest 12-24 Months</p>
+                {{form.rate_of_interest_2}}
+                <p>Select rate of interest 24-48 Months</p>
+                {{form.rate_of_interest_3}}
+
+                <br/>
+                <br/>
+                <input class="btn btn-primary" type="submit" name="Update">
+            </form>
+               
+            <!-- Button -->
+            
+
+        </div>
+
+        </div>
+        <!-- Card -->
+        
+
+
+    </div>
+
+
+    
+
+</body>
+
+{% endblock %}
+{% block javascript%}
+
+{% endblock %}

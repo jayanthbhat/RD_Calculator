@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block content%}
+    {% if active == False%}
+    <div class="text-center">
+        <!-- Card -->
+        <div class="card" style="padding:40px">
+        
+        <!-- Card image -->
+        
+
+        <!-- Card content -->
+        <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title"><a>Calulate Recuring Deposit(RD Calculator)</a></h4>
+            <!-- Text -->
+            <form method="post" action="">
+                {% csrf_token %}
+                <p>Select Bank Name</p>
+                {{form.bank_name}}
+                <br/>
+                <br/>
+                <p>Enter Deposit amount</p>
+                {{form.amount}}
+                <br/>
+                <br/>
+                <p>Select Deposit term(Time)</p>
+                {{form.deposit_term}}
+                <br/> 
+                <br/>  
+                <p>Rate of interest</p>
+                    <input type='text' name='rate_of_interest' id='id_rate_of_interest'></p>
+            
+                <br/>
+                <input class="btn btn-primary" type="submit" name="Complete">
+            </form>
+               
+            <!-- Button -->
+            
+
+        </div>
+
+        </div>
+        <!-- Card -->
+        
+
+
+    </div>
+    {% else %}
+    
+    <div class="text-center">
+        <!-- Card -->
+        <div class="card" style="padding:40px">
+        <!-- Card content -->
+        <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title"><a>Recuring Deposit Calculated Data</a></h4>
+            <!-- Text -->
+                <div class="row" style="padding:20px">
+                <div class="col">
+                </div>
+                    <div class="col-md-3">
+                        <p>Selected Bank Name</p>
+                        <p>Your Deposit Amount</p>
+                        <p>Your Deposit term(Time)</p>
+                        <p>Rate of interest</p>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <p>{{ bank_name }}</p>
+                        <p>Rs {{ amount_rs }}</p>
+                        <p>{{ deposit_term }} Months</p>
+                        <p>{{ rate_of_interest }} %</p>
+                    </div>
+                    <div class="col">
+                </div>
+               </div>
+                 
+                 
+               <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-md-4">
+                        <canvas id="pieChart">
+                        </canvas>
+                </div>
+                <div class="col-md-4" class="text-left">
+                <p>Invested Amount :Rs {{total_amount_currency}}</p>
+                <p>Interest Amount :Rs {{interest_amount_currency}} </p>
+                <p>Maturity Amount: Rs {{maturity}}</p>
+                </div>
+                <div class="col">
+                </div>
+               </div>
+            
+        </div>
+
+        </div>
+        <!-- Card -->
+    </div>
+    {% endif%}
+
+
+{% endblock %}
+{% block javascript%}
+<script>
+
+$('#id_deposit_term').on('change', function() {
+                
+                 $.ajax({
+                    url: "/api-get-roi/",
+                    type: 'POST',
+                    headers : {
+                            "Content-Type": "application/json",
+                            'X-CSRFToken' : '{{ csrf_token }}',
+                        },
+                    data: JSON.stringify({
+                        bank_name: $("#id_bank_name").val(),
+                        deposit_term : $("#id_deposit_term").val(),
+                    }),
+                    success: function (response) {
+                       console.log(response)
+                       if (response.exists == true){
+                            $('#id_rate_of_interest').val(response.rate_of_interest);
+                           
+                            
+                       }
+                    }
+                })
+})
+
+          
+                      
+///////////////////////////////////////////////////////////////////
+
+
+//pie
+var ctxP = document.getElementById("pieChart").getContext('2d');
+var myPieChart = new Chart(ctxP, {
+type: 'pie',
+data: {
+labels: ["Deposit Amount", "Interest Amount"],
+datasets: [{
+data: [{{total_amount}}, {{interest_amount}}],
+backgroundColor: ["#F7464A", "#46BFBD",],
+hoverBackgroundColor: ["#FF5A5E", "#5AD3D1",]
+}]
+},
+options: {
+responsive: true
+}
+});
+</script>
+{% endblock %}

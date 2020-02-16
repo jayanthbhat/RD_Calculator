@@ -1,0 +1,84 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% block meta %}{% endblock meta %}
+        <title> {% block title %} {% endblock title %} </title>
+
+
+       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/css/mdb.min.css" rel="stylesheet">
+
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/js/mdb.min.js"></script>
+
+
+        {% block extrahead %} {% endblock extrahead %}
+
+        {% block css %}{% endblock css %}
+
+    </head>
+    <body>
+    <!--Navbar -->
+<nav class="mb-1 navbar navbar-expand-lg navbar-dark secondary-color lighten-1">
+  <a class="navbar-brand" href="#">RD Calculator</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'home' %}">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'BankList' %}">Bank List</a>
+      </li>
+      
+      
+    </ul>
+    
+  </div>
+</nav>
+<!--/.Navbar -->
+
+    {% block content %}{% endblock content %}
+
+  
+
+   
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="{% static 'mdb4.8.1/js/mdb.min.js' %}"></script>
+
+
+    {% block javascript %}{% endblock javascript %}
+   
+
+
+    <script>
+        // SideNavbar
+        $(".button-collapse").sideNav();
+    </script>
+
+
+    </body>
+</html>
+
