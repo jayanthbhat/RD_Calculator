@@ -7,6 +7,6 @@ db.sqlite3
 .DS_Store
 .vscode
 media/**
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
+# **/migrations/**
+# !**/migrations
+# !**/migrations/__init__.py
