@@ -4,6 +4,6 @@ Bank rate of interest can be changed accordingly
 
 ##step 1: add amount and time interval
 
-![Test Image 1](https://github.com/jayanthbhat/RD_Calculator/tree/master/images/1.png)
+[Test Image 1](https://github.com/jayanthbhat/RD_Calculator/tree/master/images/1.png)
 
 
