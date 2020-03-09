@@ -2,6 +2,9 @@
 Calculates the Recoring Deposit Amount by Fetching Rate of interest,Amount to be deposited and Time duration
 Bank rate of interest can be changed accordingly 
 
+### The Application is hosted in heroku 
+https://rd-calculator-application.herokuapp.com/
+
 ## step 1: RD Calculator UI is shown in figure
 
 [Test Image 1](https://github.com/jayanthbhat/RD_Calculator/tree/master/images/1.png)
